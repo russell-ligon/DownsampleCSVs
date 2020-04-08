@@ -11,4 +11,6 @@ Script that allows many folders containing raw csvs to be downsampled into new f
  #### 1 - the first argument is the parent directory, containing sub-directories, each with many RAW csvs
  #### 2 - the second argument is the number of cores you want to use for the process
  
+ ##CALL THIS SCRIPT THUSLY
+ 
   Rscript Parallelized_downsampler.R "/local/workdir/CHM/TerritoryTrials_chm/1_Raw_Thermal_CSVs" 20 
