@@ -8,8 +8,8 @@ Script that allows many folders containing raw csvs to be downsampled into new f
  #### Once all directories containing RAW csvs (saved at >1 Htz) are uploaded (or whenever you're ready to downsample)
  #### upload 'Parallelized_downsampler.R' to the cluster, open a new screen and navigate to the location where you uploaded
  #### the Rscript, then enter this in the command  line
- #### 1 - the first argument is the parent directory, containing sub-directories, each with many RAW csvs
- #### 2 - the second argument is the number of cores you want to use for the process
+( 1 - the first argument is the parent directory, containing sub-directories, each with many RAW csvs
+  2 - the second argument is the number of cores you want to use for the process )
  
  ##CALL THIS SCRIPT THUSLY
  
