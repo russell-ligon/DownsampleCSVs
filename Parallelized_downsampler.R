@@ -16,14 +16,16 @@ if (length(args)!=2) {
 }
 
 library(dplyr)
-
+library(data.table)
+library(snow)
+library(doParallel)
 
 #Set directory to downsample thermal CSVs to 1htz
-# setwd(dir<-"J:/EightXEight/T008/T008_MainDays")
+# setwd(dir<-"/local/workdir/CHM/TerritoryTrials_chm/1_Raw_Thermal_CSVs")
 # setwd(dir<-"J:/EightXEight/T006/")
 # setwd(dir<-"K:/8x8/Thermal/T007_rerun/T007_MainDays")
 
-dirmain<-args[1]
+dir<-args[1]
 howmancoresshouldiuse<-as.numeric(as.character(args[2]))
 
 downsample<-"y"
@@ -32,6 +34,11 @@ downsample<-"y"
 
 
 folders<-list.dirs(dir,full.names=TRUE,recursive = FALSE)# 
+
+downsampledfolders<- folders[grep("downsamp",folders)]
+
+folders<-folders[!(folders %in% downsampledfolders)]
+
 
 downsampleparallel<-function(eachfolder){
   thisfolder<-eachfolder
@@ -100,7 +107,7 @@ downsampleparallel<-function(eachfolder){
 
 thismanycores<-howmancoresshouldiuse
 #RB <<- parallel::makeCluster(thismanycores, outfile="")
-RB  <<- parallel::makeCluster(thismanycores, outfile=paste(savedir,"/",folderidentifier,"Downsampleout.txt",sep=''))
+RB  <<- parallel::makeCluster(thismanycores, outfile=paste("Downsampleout.txt",sep=''))
 
 #  Ccl<-makeCluster(6)
 registerDoParallel(RB,cores=thismanycores)
